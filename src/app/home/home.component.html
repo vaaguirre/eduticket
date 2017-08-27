@@ -1,15 +1,16 @@
 <div class="jumbotron jumbotron-fluid text-center">
     <div class="container">
         <!-- <h1 class="display-3">{{appname}}</h1> -->
-        <img src="/assets/img/EduTicket.png" style="width:250px;" alt="">
-        <p class="text-center">¡Juega y gana becas para apyar tu educación!</p>
+        <img src="/assets/img/EduTicketv2.png" style="width:200px;" alt="">
+        <p class="text-center">¡Juega y gana becas para apoyar tu educación!</p>
         <h5 *ngIf="ticketCount>0">{{ ticketCount }} ticket{{ ticketCount > 1 ? 's' : '' }} vendidos</h5>
+        <h5 *ngIf="ticketCount>0">L {{ ticketCount * 15 | number:'.2-2' }} de premio</h5>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <p class="text-center">El siguiente sorteo se realizará el domingo 27 de Agosto en el <b>Honducamp.tech</b> 2017</p>
+            <p><b>NOTA:</b> Esto es una prueba de concepto para el <b>Honducamp.tech</b>. El sorteo se realizará el domingo 27 de Agosto en las presentaciones del Honduhack. </p>
             <a class="btn btn-primary" [routerLink]="['/buyticket']" routerLinkActive="active" >Consigue tu ticket</a>
         </div>
     </div>

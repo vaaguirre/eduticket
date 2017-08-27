@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="step < 3">
         <div class="col-12 col-md-6 mx-md-auto">
             <h2>Compra un ticket</h2>
         </div>
@@ -26,14 +26,19 @@
                 <input type="text" name="token" id="token" class="form-control" [(ngModel)]="token" autofocus>
                 <div class="button-wrapper">
                     <button type="button" class="btn btn-default btn-block" (click)="goToStep(1)">Regresar</button>
-                    <button type="submit" class="btn btn-primary btn-block" >Enviar</button>
+                    <button type="submit" class="btn btn-primary btn-block">Enviar</button>
                 </div>
             </form>
         </div>
-        <div class="col-12 col-md-6 mx-md-auto" *ngIf="step==3">
-            <div class="alert alert-info">
-                Enviando...
+        <div class="col-12 col-md-6 mx-md-auto text-center" *ngIf="step==3">
+            <br>
+            <h4 class="text-center">{{ success ? "¡Éxito!" : "Enviando..." }}</h4>
+            <!-- <div class="loader">Loading...</div> -->
+
+            <div class="circle-loader" [class.load-complete]="success">
+                <div class="checkmark draw" [style.display]="success ? 'block' : 'none'"></div>
             </div>
+            <p *ngIf="success">Te llevamos de regreso en {{backCounter}}..</p>
         </div>
         <div class="col-12 col-md-6 mx-md-auto" *ngIf="step==4">
             <div class="alert alert-success">

@@ -17,6 +17,7 @@ export class BuyticketComponent implements OnInit {
     public token: string;
     public backCounter: number = 3;
     public subscription: Subscription;
+    public success: Boolean = false;
 
     constructor(
         private router: Router,
@@ -27,6 +28,7 @@ export class BuyticketComponent implements OnInit {
     }
 
     goToStep(step) {
+        this.success = false;
         this.step = step;
     }
 
@@ -36,7 +38,8 @@ export class BuyticketComponent implements OnInit {
         this.api.buyTicket(this.name, this.email, this.token)
             .subscribe(response => {
                 console.log(this.name, this.email, this.token);
-                this.step = 4;
+                // this.step = 4;
+                this.success = true;
                 this.startCountDown();
             }, error => {
                 console.log(error);
