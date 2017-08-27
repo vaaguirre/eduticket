@@ -17,6 +17,7 @@ export class SelectwinnerComponent implements OnInit {
     maxRuns: number = 10;
     winner: string;
     test: boolean = true;
+    apicalls: number = 0;
 
     emails = [
         "victor@sube.la",
@@ -45,8 +46,9 @@ export class SelectwinnerComponent implements OnInit {
         var interval = setInterval(function () {
             if (x < self.maxRuns) {
                 self.api.getRandom((x == self.maxRuns - 1 ) && !self.test ? true : false).subscribe(response => {
-                    console.log(response);
                     self.posibleWinner = response.email;
+                    self.apicalls++;
+                    console.log(self.apicalls);
                     if(x == self.maxRuns) {
                         self.winner = self.posibleWinner;
                     }
