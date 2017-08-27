@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Compra un ticket</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" *ngIf="step==1">
+            <label for="email">Ingresa tu dirección de correo para notificarte si resultas ganador:</label>
+            <input type="email" id="email" class="form-control">
+            <div class="button-wrapper">
+                <button type="button" class="btn btn-primary btn-block" (click)="goToStep(2)">Pagar</button>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="step==2">
+            <label for="token">Ingresa tu token de pago:</label>
+            <input type="text" id="token" class="form-control">
+            <div class="button-wrapper">
+                <button type="button" class="btn btn-default btn-block" (click)="goToStep(1)">Regresar</button>
+                <button type="button" class="btn btn-primary btn-block">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
