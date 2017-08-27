@@ -1,7 +1,9 @@
 <div class="jumbotron jumbotron-fluid text-center">
     <div class="container">
-        <h1 class="display-3">{{appname}}</h1>
+        <!-- <h1 class="display-3">{{appname}}</h1> -->
+        <img src="/assets/img/EduTicket.png" style="width:250px;" alt="">
         <p class="text-center">¡Juega y gana becas para apyar tu educación!</p>
+        <h5 *ngIf="ticketCount>0">{{ ticketCount }} ticket{{ ticketCount > 1 ? 's' : '' }} vendidos</h5>
     </div>
 </div>
 <div class="container">

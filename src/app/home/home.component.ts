@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EduticketService } from '../services/eduticket.service';
 
 @Component({
     selector: 'app-home',
@@ -8,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
     appname = 'Eduticket';
+    ticketCount = 0;
 
-    constructor() { }
+    constructor(private api: EduticketService) { }
 
     ngOnInit() {
+        this.api.getCount()
+            .subscribe(data => this.ticketCount = data.count);
     }
 
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs/Rx';
+
+import { EduticketService } from '../services/eduticket.service';
 
 @Component({
     selector: 'app-buyticket',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyticketComponent implements OnInit {
 
-    step = 1;
+    public step: number = 1;
+    public name: string;
+    public email: string;
+    public token: string;
+    public backCounter: number = 3;
+    public subscription: Subscription;
 
-    constructor() { }
+    constructor(
+        private router: Router,
+        private api: EduticketService
+    ) { }
 
     ngOnInit() {
     }
@@ -18,4 +30,32 @@ export class BuyticketComponent implements OnInit {
         this.step = step;
     }
 
+    buyTicket() {
+        this.step = 3;
+        console.log("buyticket");
+        this.api.buyTicket(this.name, this.email, this.token)
+            .subscribe(response => {
+                console.log(this.name, this.email, this.token);
+                this.step = 4;
+                this.startCountDown();
+            }, error => {
+                console.log(error);
+                alert("Token Invalido");
+                this.step = 2;
+            });
+    }
+
+    startCountDown() {
+        var self = this;
+
+        let timer = Observable.timer(1000,1000);
+        this.subscription = timer.subscribe(t=> {
+            self.backCounter--;
+            if(self.backCounter == 0) {
+                console.log("redirect...");
+                this.router.navigate(['']);
+                self.subscription.unsubscribe();
+            }
+        });
+    }
 }

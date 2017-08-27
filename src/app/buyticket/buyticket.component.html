@@ -6,18 +6,38 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6 mx-md-auto" *ngIf="step==1">
-            <label for="email">Ingresa tu dirección de correo para notificarte si resultas ganador:</label>
-            <input type="email" id="email" class="form-control">
-            <div class="button-wrapper">
-                <button type="button" class="btn btn-primary btn-block" (click)="goToStep(2)">Pagar</button>
-            </div>
+            <form name="step1" (ngSubmit)="f.form.valid && goToStep(2)" #f="ngForm" ngNativeValidate>
+                <div class="form-group">
+                    <label for="name">¿Cómo te llamas?</label>
+                    <input type="text" name="name" id="name" class="form-control" [(ngModel)]="name" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="email">Ingresa tu dirección de correo para notificarte si resultas ganador:</label>
+                    <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" autofocus>
+                </div>
+                <div class="button-wrapper">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!f.form.valid">Pagar</button>
+                </div>
+            </form>
         </div>
         <div class="col-12 col-md-6 mx-md-auto" *ngIf="step==2">
-            <label for="token">Ingresa tu token de pago:</label>
-            <input type="text" id="token" class="form-control">
-            <div class="button-wrapper">
-                <button type="button" class="btn btn-default btn-block" (click)="goToStep(1)">Regresar</button>
-                <button type="button" class="btn btn-primary btn-block">Enviar</button>
+            <form name="step1" (ngSubmit)="f.form.valid && buyTicket()" #f="ngForm" ngNativeValidate>
+                <label for="token">Ingresa tu token de pago:</label>
+                <input type="text" name="token" id="token" class="form-control" [(ngModel)]="token" autofocus>
+                <div class="button-wrapper">
+                    <button type="button" class="btn btn-default btn-block" (click)="goToStep(1)">Regresar</button>
+                    <button type="submit" class="btn btn-primary btn-block" >Enviar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-6 mx-md-auto" *ngIf="step==3">
+            <div class="alert alert-info">
+                Enviando...
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mx-md-auto" *ngIf="step==4">
+            <div class="alert alert-success">
+                ¡Éxito! <br> {{backCounter}}
             </div>
         </div>
     </div>

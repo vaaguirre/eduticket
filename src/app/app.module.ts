@@ -9,6 +9,8 @@ import { NgbModule, NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BuyticketComponent } from './buyticket/buyticket.component';
+import { ApiService } from './services/api.service';
+import { EduticketService } from './services/eduticket.service';
 
 const appRoutes: Routes = [
     {
@@ -39,7 +41,10 @@ const appRoutes: Routes = [
             { enableTracing: false }
         )
     ],
-    providers: [],
+    providers: [
+        ApiService,
+        EduticketService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
