@@ -9,6 +9,7 @@ import { NgbModule, NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BuyticketComponent } from './buyticket/buyticket.component';
+import { SelectwinnerComponent } from './selectwinner/selectwinner.component';
 import { ApiService } from './services/api.service';
 import { EduticketService } from './services/eduticket.service';
 
@@ -23,13 +24,19 @@ const appRoutes: Routes = [
         component: BuyticketComponent,
         data: { title: 'Compra tu Ticket' }
     },
+    {
+        path: 'selectwinner',
+        component: SelectwinnerComponent,
+        data: { title: 'Sorteo' }
+    },
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        BuyticketComponent
+        BuyticketComponent,
+        SelectwinnerComponent
     ],
     imports: [
         BrowserModule,

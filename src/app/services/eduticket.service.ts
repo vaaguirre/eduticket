@@ -17,4 +17,12 @@ export class EduticketService {
             "token" : token
         });
     }
+
+    getRandom(test = null) {
+        if(!test) {
+            return this.apiService.get("random");
+        } else {
+            return this.apiService.get("random?send=true");
+        }
+    }
 }

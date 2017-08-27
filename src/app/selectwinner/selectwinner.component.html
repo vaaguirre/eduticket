@@ -1,0 +1,34 @@
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+        <h1>Sorteo</h1>
+        <h5 *ngIf="ticketCount>0">{{ ticketCount }} ticket{{ ticketCount > 1 ? 's' : '' }} vendidos</h5>
+        <h5 *ngIf="ticketCount>0">L {{ ticketCount * 15 | number:'.2-2' }} de premio</h5>
+    </div>
+</div>
+<div class="container">
+    <div class="row" *ngIf="!raffleHasBegun">
+        <div class="col-12 col-md-6 mx-md-auto text-center">
+            <form name="pass" (ngSubmit)="f.form.valid && beginRaffle()" #f="ngForm" ngNativeValidate>
+                <div class="alert alert-danger" *ngIf="error">Contraseña incorrecta</div>
+                <div class="form-group">
+                    <label for="">Contraseña:</label>
+                    <input type="password" class="form-control" name="passwordInput" [(ngModel)]="passwordInput">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="form-control" name="test" [(ngModel)]="test">Prueba:</label>
+                </div>
+                <button type="submit" class="btn btn-primary" routerLinkActive="active">Sortear</button>
+            </form>
+        </div>
+    </div>
+    <div class="row" *ngIf="raffleHasBegun">
+        <div class="col-12 col-md-6 mx-md-6">
+            <p *ngIf="!winner">
+                Sorteando...
+                <br> {{ posibleWinner }}
+            </p>
+            <h3 *ngIf="winner" class="text-center">{{ test ? "Resultado simulacro" : "¡Ganador!" }}
+                <hr> {{ winner }}</h3>
+        </div>
+    </div>
+</div>
